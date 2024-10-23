@@ -34,7 +34,7 @@ class CustomCardPackage extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Text(bundleData.indexIdofpackged != 1 ? paidpackagebody : unpaidpackagebody,
+            Text(bundleData.prica != "0.0" ? paidpackagebody : unpaidpackagebody,
                 textAlign: TextAlign.center, style: Styles.textsize12),
             const SizedBox(
               height: 5,
@@ -51,7 +51,7 @@ class CustomCardPackage extends StatelessWidget {
                   bundleData.ontap();
                 },
                 child: Text(
-                    bundleData.indexIdofpackged != 1 ? " اشترك الان" : 'أضف إعلانك الآن',
+                    bundleData.prica != "0.0" ? " اشترك الان" : 'أضف إعلانك الآن',
                     textAlign: TextAlign.center,
                     style: Styles.textsize16.copyWith(color: Colors.white))),
             const SizedBox(
