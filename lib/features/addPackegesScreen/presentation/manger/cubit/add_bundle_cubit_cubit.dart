@@ -5,19 +5,24 @@ import 'package:meta/meta.dart';
 part 'add_bundle_cubit_state.dart';
 
 class AddBundleCubitCubit extends Cubit<AddBundleCubitState> {
-GetAllPackges getAllPackges;
+  GetAllPackges getAllPackges;
   AddBundleCubitCubit(this.getAllPackges) : super(AddBundleCubitInitial());
 
-    addBundle(int id) async {
+  addBundle(int id) async {
     emit(AddBundleCubitloading());
     var res = await getAllPackges.addBundle(id);
     res.fold((l) {
-    print(l.message,);
-    emit(AddBundleCubitErorre(l.message));
-    },(r) { 
-      print(AddBundleCubitSucsess);
-      emit(AddBundleCubitSucsess(r.message!));
+      print(
+        l.message,
+      );
+      emit(AddBundleCubitErorre(l.message));
+    }, (r) {
+      print(state);
+      if (r.message == null) {
+        emit(AddBundleCubitPayment(r.url!));
+      } else {
+        emit(AddBundleCubitFreeSucsess(r.message!));
+      }
     });
   }
-
 }

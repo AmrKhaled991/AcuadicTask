@@ -1,10 +1,15 @@
-import 'package:aquadic_task/core/GlobalUtils/customsnackbar.dart';
-import 'package:aquadic_task/core/GlobalUtils/styles.dart';
-import 'package:aquadic_task/features/addPackegesScreen/presentation/manger/cubit/add_bundle_cubit_cubit.dart';
-import 'package:aquadic_task/features/addPackegesScreen/presentation/view/utils/custom_card_package.dart';
-import 'package:aquadic_task/features/addPackegesScreen/data/models/getallpackagesrepsonse/bundle.dart';
+import 'package:aquadic_task/core/GlobalUtils/appRouter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:aquadic_task/constant.dart';
+import 'package:aquadic_task/core/GlobalUtils/customsnackbar.dart';
+import 'package:aquadic_task/core/GlobalUtils/styles.dart';
+import 'package:aquadic_task/core/dto/BundleData.dart';
+import 'package:aquadic_task/features/addPackegesScreen/data/models/getallpackagesrepsonse/bundle.dart';
+import 'package:aquadic_task/features/addPackegesScreen/presentation/manger/cubit/add_bundle_cubit_cubit.dart';
+import 'package:aquadic_task/features/addPackegesScreen/presentation/view/utils/custom_card_package.dart';
+import 'package:go_router/go_router.dart';
 
 class AllPackegsBody extends StatelessWidget {
   const AllPackegsBody({
@@ -17,11 +22,12 @@ class AllPackegsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AddBundleCubitCubit, AddBundleCubitState>(
       listener: (context, state) {
-        if (state is AddBundleCubitSucsess) {
+        if (state is AddBundleCubitFreeSucsess) {
           showSnackBar(context, state.message, Colors.black);
-        }
-        if (state is AddBundleCubitErorre) {
+        } else if (state is AddBundleCubitErorre) {
           showSnackBar(context, state.erorre, Colors.black);
+        } else if (state is AddBundleCubitPayment) {
+          context.push(Approuter.kCustomWebViewScreen, extra: state.url);
         }
       },
       builder: (context, state) => Stack(
@@ -33,76 +39,37 @@ class AllPackegsBody extends StatelessWidget {
               children: [
                 const Text('اختر باقتك الإعلانية', style: Styles.textsize16),
                 const SizedBox(
-                  height: 12,
+                  height: 10,
                 ),
                 Expanded(
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverToBoxAdapter(
-                        child: CustomCardPackage(
-                          ontap: () {
-                            BlocProvider.of<AddBundleCubitCubit>(context)
-                                .addBundle(res[0].id!);
-                          },
-                          headerText: Text(
-                            res[0].name?.ar ?? " ",
-                            style: Styles.textsize20White,
+                  child: ListView.separated(
+                      padding: const EdgeInsets.all(0),
+                      itemBuilder: (context, index) => CustomCardPackage(
+                          bundleData: BundleData(
+                              color: res[index].color != null
+                                  ? Color(int.parse(res[index]
+                                      .color!
+                                      .replaceFirst('#', '0xff')))
+                                  : green,
+                              headerText: Text(
+                                res[index].name?.ar ?? "",
+                                style: Styles.textsize20White,
+                              ),
+                              prica: res[index].price!,
+                              indexIdofpackged: res[index].id!,
+                              ontap: () =>
+                                  BlocProvider.of<AddBundleCubitCubit>(context)
+                                      .addBundle(res[index].id!))),
+                      separatorBuilder: (context, index) => const SizedBox(
+                            height: 10,
                           ),
-                          indexIdofpackged: res[0].id!,
-                          amount: "درهم${res[0].price!}",
-                        ),
-                      ),
-                      const SliverToBoxAdapter(
-                        child: SizedBox(
-                          height: 12,
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: CustomCardPackage(
-                          ontap: () {
-                            BlocProvider.of<AddBundleCubitCubit>(context)
-                                .addBundle(res[1].id!);
-                          },
-                          headerText: Text(
-                            res[1].name?.ar ?? "",
-                            style: Styles.textsize20White,
-                          ),
-                          indexIdofpackged: res[1].id!,
-                          amount: "درهم${res[1].price!}",
-                        ),
-                      ),
-                      const SliverToBoxAdapter(
-                        child: SizedBox(
-                          height: 12,
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: CustomCardPackage(
-                          ontap: () {
-                            BlocProvider.of<AddBundleCubitCubit>(context)
-                                .addBundle(res[2].id!);
-                          },
-                          headerText: Text(
-                            res[0].name?.ar ?? "",
-                            style: Styles.textsize20White,
-                          ),
-                          indexIdofpackged: res[2].id!,
-                          amount: "درهم${res[2].price!}",
-                        ),
-                      ),
-                      const SliverToBoxAdapter(
-                        child: SizedBox(
-                          height: 12,
-                        ),
-                      )
-                    ],
-                  ),
+                      itemCount: res.length),
                 ),
               ],
             ),
           ),
           if (state is AddBundleCubitloading)
-            const Center(child: CircularProgressIndicator())
+            const Center(child: CircularProgressIndicator()),
         ],
       ),
     );

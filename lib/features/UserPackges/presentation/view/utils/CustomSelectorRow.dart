@@ -11,12 +11,11 @@ class CustomSelectorRow extends StatelessWidget {
   int size;
   int page;
   CustomSelectorRow(
-      {Key? key,
+      {super.key,
       required this.ontapr,
       required this.ontapl,
       required this.size,
-      required this.page})
-      : super(key: key);
+      required this.page});
 
   @override
   Widget build(BuildContext context) {

@@ -8,10 +8,10 @@ class CustomIndcator extends StatelessWidget {
   int page;
   int size;
   CustomIndcator({
-    Key? key,
+    super.key,
     required this.page,
     required this.size,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class CustomDetactore_container extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         width: check ? 18 : 8,
         height: 8,
         decoration: ShapeDecoration(

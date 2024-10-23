@@ -29,8 +29,9 @@ class ServierError extends Fallur {
       case DioExceptionType.unknown:
         if (dioException.message!.contains('SocketException')) {
           return ServierError('no internet conection');
-        } else
+        } else {
           return ServierError('unexpected error,plz try again later');
+        }
       default:
         return ServierError('Ops somthing went wronge ,plz try agein later');
     }

@@ -10,7 +10,10 @@ import 'package:aquadic_task/core/GlobalUtils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserPackges extends StatelessWidget {
+  const UserPackges({super.key});
+
   
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
@@ -33,8 +36,11 @@ class UserPackges extends StatelessWidget {
                     children: [
                       const Align(
                         alignment: Alignment.centerRight,
-                        child: Text('انت الآن مشترك في باقة :',
-                            style: Styles.textsize16),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text('انت الآن مشترك في باقة :',
+                              style: Styles.textsize16),
+                        ),
                       ),
                       const SizedBox(
                         height: 18,
@@ -56,7 +62,7 @@ class UserPackges extends StatelessWidget {
                   ),
                 );
               }
-              return Center(child: const CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             },
           )),
     );

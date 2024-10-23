@@ -1,7 +1,6 @@
 import 'package:aquadic_task/core/GlobalUtils/appRouter.dart';
 import 'package:aquadic_task/core/GlobalUtils/getItLocator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
   

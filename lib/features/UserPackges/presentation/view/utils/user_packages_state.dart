@@ -11,9 +11,9 @@ import 'package:go_router/go_router.dart';
 class UserPackagesState extends StatefulWidget {
   List<UserSBundle>? userBundles;
   UserPackagesState({
-    Key? key,
+    super.key,
     required this.userBundles,
-  }) : super(key: key);
+  });
 
   @override
   State<UserPackagesState> createState() => _UserPackagesStateState();

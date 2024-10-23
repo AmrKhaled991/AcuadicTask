@@ -7,9 +7,13 @@ final class AddBundleCubitInitial extends AddBundleCubitState {}
 
 
 
-final class AddBundleCubitSucsess extends AddBundleCubitState {
+final class AddBundleCubitFreeSucsess extends AddBundleCubitState {
    String message;
-  AddBundleCubitSucsess(this.message);
+  AddBundleCubitFreeSucsess(this.message);
+}
+final class AddBundleCubitPayment extends AddBundleCubitState {
+   String url;
+  AddBundleCubitPayment(this.url);
 }
 final class AddBundleCubitloading extends AddBundleCubitState {}
 final class AddBundleCubitErorre extends AddBundleCubitState {

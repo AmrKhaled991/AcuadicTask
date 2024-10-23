@@ -13,10 +13,10 @@ class CustomUserpackges extends StatelessWidget {
   final PageController pageController;
   final List<UserSBundle>? userBundles;
   const CustomUserpackges({
-    Key? key,
+    super.key,
     required this.pageController,
     required this.userBundles,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

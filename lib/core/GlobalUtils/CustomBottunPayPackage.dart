@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 class CustomBottunPayPackage extends StatelessWidget {
   VoidCallback onTap;
   CustomBottunPayPackage({
-    Key? key,
+    super.key,
     required this.onTap,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

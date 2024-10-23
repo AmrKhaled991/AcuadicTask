@@ -67,6 +67,5 @@ class Comunscreenui extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

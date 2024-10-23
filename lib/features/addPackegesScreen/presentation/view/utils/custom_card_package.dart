@@ -3,23 +3,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:aquadic_task/constant.dart';
-import 'package:aquadic_task/core/GlobalUtils/get_current_color.dart';
 import 'package:aquadic_task/core/GlobalUtils/styles.dart';
+import 'package:aquadic_task/core/dto/BundleData.dart';
 
 class CustomCardPackage extends StatelessWidget {
-  Text headerText;
-  String amount;
-  int indexIdofpackged;
-  VoidCallback ontap;
-
+  BundleData bundleData;
   CustomCardPackage({
-    Key? key,
-    required this.headerText,
-    required this.amount,
-    required this.indexIdofpackged,
-    required this.ontap,
-  }) : super(key: key);
-  Color get currnatcolor => getCurrentColor(indexIdofpackged);
+    super.key,
+    required this.bundleData,
+  });
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -35,31 +27,31 @@ class CustomCardPackage extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
-                    color: currnatcolor,
+                    color: bundleData.color,
                     borderRadius:
                         const BorderRadius.vertical(top: Radius.circular(15))),
-                child: Center(child: headerText)),
+                child: Center(child: bundleData.headerText)),
             const SizedBox(
               height: 5,
             ),
-            Text(indexIdofpackged != 1 ? paidpackagebody : unpaidpackagebody,
+            Text(bundleData.indexIdofpackged != 1 ? paidpackagebody : unpaidpackagebody,
                 textAlign: TextAlign.center, style: Styles.textsize12),
             const SizedBox(
               height: 5,
             ),
-            Text(amount, textAlign: TextAlign.center, style: Styles.textsize20),
+            Text(bundleData.prica, textAlign: TextAlign.center, style: Styles.textsize20),
             const SizedBox(
               height: 10,
             ),
             TextButton(
                 style: TextButton.styleFrom(
-                    backgroundColor: currnatcolor,
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 70)),
+                    backgroundColor: bundleData.color,
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 70)),
                 onPressed: () {
-                  ontap();
+                  bundleData.ontap();
                 },
                 child: Text(
-                    indexIdofpackged != 1 ? " اشترك الان" : 'أضف إعلانك الآن',
+                    bundleData.indexIdofpackged != 1 ? " اشترك الان" : 'أضف إعلانك الآن',
                     textAlign: TextAlign.center,
                     style: Styles.textsize16.copyWith(color: Colors.white))),
             const SizedBox(

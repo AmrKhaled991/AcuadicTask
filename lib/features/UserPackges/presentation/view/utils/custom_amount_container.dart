@@ -8,11 +8,11 @@ class CustomAmountContainer extends StatelessWidget {
   int amount;
   Color color;
   CustomAmountContainer({
-    Key? key,
+    super.key,
     required this.text,
     required this.amount,
     required this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

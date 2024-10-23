@@ -10,11 +10,11 @@ class SectionButtons_Amounts extends StatelessWidget {
   final int bundle_used;
   final Color color;
   const SectionButtons_Amounts({
-    Key? key,
+    super.key,
     required this.bundle_amount,
     required this.bundle_used,
     required this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +53,9 @@ class SectionButtons_Amounts extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15))),
                   onPressed: () {},
-                  child: Container(
+                  child: const SizedBox(
                     width: double.infinity,
-                    child: const Text('أضافة اعلان',
+                    child: Text('أضافة اعلان',
                         textAlign: TextAlign.center, style: Styles.textsize18),
                   )),
               const SizedBox(

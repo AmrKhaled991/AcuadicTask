@@ -6,11 +6,11 @@ class CustomBackButton extends StatelessWidget {
   final Color color;
   final IconData icon;
   const CustomBackButton({
-    Key? key,
+    super.key,
     required this.color,
     required this.icon,
     required this.voidCallback,
-  }) : super(key: key);
+  });
 
   final VoidCallback voidCallback;
 
