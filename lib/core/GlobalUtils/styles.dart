@@ -68,4 +68,6 @@ abstract class Styles {
     fontFamily: 'DINNextLTArabic',
     fontWeight: FontWeight.w400,
   );
+
+  //das,fpda,foads,fdsamflkdsamflasdf
 }
