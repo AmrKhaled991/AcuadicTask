@@ -55,6 +55,7 @@ abstract class Styles {
     fontFamily: 'DINNextLTArabic',
     fontWeight: FontWeight.w400,
   );
+  //asdfdsffdsa
   static const TextStyle textsize48 = TextStyle(
     color: Colors.white,
     fontSize: 48,
